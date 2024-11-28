@@ -1,2 +1,2 @@
-const BaseUrl = "http://192.168.18.125:4000";
+const BaseUrl = "https://backend.beautyparkbp.com";
 export default BaseUrl;
