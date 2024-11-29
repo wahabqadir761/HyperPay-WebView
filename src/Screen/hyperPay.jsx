@@ -41,20 +41,12 @@ const PaymentPage = () => {
     fetchCheckoutId();
   }, [bookingId, paramCardType, paymentType]);
 
- 
-
-
-  
- 
    useEffect(() => {
     if (checkoutId) {
       console.log("Defining wpwlOptions and loading script...");
-
       // Define wpwlOptions globally
       if (!window.wpwlOptions) {
         // Here we use the checkoutId as the id
-
-
         window.wpwlOptions = {
           style: "card",
           locale: "en",
@@ -64,7 +56,6 @@ const PaymentPage = () => {
           },
         };
       }
-
       // Dynamically load the HyperPay script
       const script = document.createElement("script");
       script.src = `https://test.oppwa.com/v1/paymentWidgets.js?checkoutId=${checkoutId}`;
@@ -86,23 +77,14 @@ const PaymentPage = () => {
       };
     }
   }, [checkoutId, bookingId]);
-     
-    
 
-    const resourcePath  = `/v1/checkouts/${checkoutId}/payment`; // Construct the resourcePath dynamically
-
+  const resourcePath  = `/v1/checkouts/${checkoutId}/payment`; // Construct the resourcePath dynamically
   const redirectUrl= `${baseUrl}/api/payment/callback?id=${checkoutId}&resourcePath=${resourcePath}&bookingId=${bookingId}&fromWhere=${fromWhere}&userId=${userId}`
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("Payment form submitted");
-  };
-
   return (
+
     <div className="hyper-card">
       {checkoutId ? (
         <form
-          onSubmit={handleSubmit}
           action={redirectUrl}
           className="paymentWidgets"
           data-brands={cardType}
@@ -113,6 +95,7 @@ const PaymentPage = () => {
         <p>Loading payment widget...</p>
       )}
     </div>
+    
   );
 };
 
